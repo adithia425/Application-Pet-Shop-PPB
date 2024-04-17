@@ -8,6 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import com.ppb.pawspal.databinding.ActivityLoginBinding
 import com.ppb.pawspal.databinding.ActivityMainBinding
+import db.UserHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 //import com.loopj.android.http.AsyncHttpClient
 //import com.loopj.android.http.AsyncHttpRequest
@@ -18,12 +23,13 @@ import com.ppb.pawspal.databinding.ActivityMainBinding
 class LoginActivity : AppCompatActivity() {
 
 
-    private lateinit var loginBinding : ActivityLoginBinding
+    private lateinit var loginBinding: ActivityLoginBinding
 
     private lateinit var edtUsername: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnLogin: Button
 
+    private lateinit var userHelper: UserHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,49 +45,68 @@ class LoginActivity : AppCompatActivity() {
         var textUsername = edtUsername.text
         var textPassword = edtPassword.text
 
+
         loginBinding.btnLogin.setOnClickListener {
 
-            Log.e("Username", textUsername.toString())
-            Log.e("Password", textPassword.toString())
-            //login(textUsername, textPassword)
+            var username = textUsername.toString();
+            var password = textPassword.toString();
+
+            login(username, password)
 //            Intent(this@LoginActivity,
-//                MainActivity::class.java)
+//                ShopActivity::class.java)
 //            )
 
         }
+    }
 
-//    private fun login(username: String, password: String){
-//        val client = AsyncHttpClient()
-//        val url = "http://128.199.194.80/auth/login"
+    private fun login(username: String, password: String) {
+
+        Log.e("Username", username)
+        Log.e("Password", password)
+
+//            val client = AsyncHttpClient()
+//            val url = "http://128.199.194.80/auth/login"
 //
-//        val parameter = RequestParams()
-//        parameter.put("uniqueId", "000000000000000000")
-//        parameter.put("password", "userUser123")
+//            val parameter = RequestParams()
+//            parameter.put("uniqueId", "000000000000000000")
+//            parameter.put("password", "userUser123")
+
+//            client.post(url, parameter, object : AsyncHttpResponseHandler() {
+//                override fun onSuccess(
+//                    statusCode: Int,
+//                    headers: Array<out Header>?,
+//                    responseBody: ByteArray?
+//                ) {
+//                    Log.e("LOGIN", "Login Berhasil")
+//                    val intent = Intent(this@MainActivity, ActivityBaru::class.java)
+//                    startActivity(intent)
+//                }
 //
-//        client.post(url, parameter, object: AsyncHttpResponseHandler(){
-//            override fun onSuccess(
-//                statusCode: Int,
-//                headers: Array<out Header>?,
-//                responseBody: ByteArray?
-//            ) {
-//                Log.e("LOGIN", "Login Berhasil")
-//                val intent = Intent(this@MainActivity, ActivityBaru::class.java)
-//                startActivity(intent)
-//            }
-//
-//            override fun onFailure(
-//                statusCode: Int,
-//                headers: Array<out Header>?,
-//                responseBody: ByteArray?,
-//                error: Throwable?
-//            ) {
-//                Log.e("Username", username)
-//                Log.e("Password", password)
-//                Log.e("LOGIN", "Login Gagal")
-//                Log.e("LOGIN", statusCode.toString())
-//            }
-//
-//        })
-//
+//                override fun onFailure(
+//                    statusCode: Int,
+//                    headers: Array<out Header>?,
+//                    responseBody: ByteArray?,
+//                    error: Throwable?
+//                ) {
+//                    Log.e("Username", username)
+//                    Log.e("Password", password)
+//                    Log.e("LOGIN", "Login Gagal")
+//                    Log.e("LOGIN", statusCode.toString())
+//                }
+//            })
+
+    }
+
+    private fun loadNotesAsync() {
+        GlobalScope.launch(Dispatchers.Main) {
+            //progressbar.visibility = View.VISIBLE
+            val deferredNotes = async(Dispatchers.IO) {
+
+
+            }
+            //progressbar.visibility = View.INVISIBLE
+            val notes = deferredNotes.await()
+
+        }
     }
 }
