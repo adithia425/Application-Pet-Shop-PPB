@@ -4,15 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_200"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Navbar -->
+    <LinearLayout
+        android:id="@+id/navbarLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PawsPal"
+        android:orientation="horizontal"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/homeButton"
+            style="@style/NavbarButtonStyle"
+            android:text="Home" />
+
+        <TextView
+            android:id="@+id/cartButton"
+            style="@style/NavbarButtonStyle"
+            android:text="Cart" />
+
+        <TextView
+            android:id="@+id/paymentButton"
+            style="@style/NavbarButtonStyle"
+            android:text="Payment" />
+
+        <TextView
+            android:id="@+id/profileButton"
+            style="@style/NavbarButtonStyle"
+            android:text="Profile" />
+
+    </LinearLayout>
+
+    <!-- Product ImageViews -->
+    <ImageView
+        android:id="@+id/catProduct"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="37dp"
+        android:contentDescription="Cat Product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cat_image_logo" />
+
+    <ImageView
+        android:id="@+id/dogProduct"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="Dog Product"
+        app:layout_constraintBottom_toBottomOf="@+id/catProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/catProduct"
+        app:layout_constraintTop_toTopOf="@+id/catProduct"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/dog_image_logo" />
+
+    <ImageView
+        android:id="@+id/turtleProduct"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="37dp"
+        android:contentDescription="Turtle Product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/catProduct"
+        app:layout_constraintTop_toBottomOf="@+id/catProduct"
+        app:srcCompat="@drawable/cat_image_logo" />
+
+    <ImageView
+        android:id="@+id/chameleonProduct"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="Chameleon Product"
+        app:layout_constraintBottom_toBottomOf="@+id/turtleProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/turtleProduct"
+        app:layout_constraintTop_toTopOf="@+id/turtleProduct"
+        app:srcCompat="@drawable/dog_image_logo" />
+
+    <ImageView
+        android:id="@+id/hamsterProduct"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="37dp"
+        android:contentDescription="Hamster Product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/turtleProduct"
+        app:layout_constraintTop_toBottomOf="@+id/turtleProduct"
+        app:srcCompat="@drawable/cat_image_logo" />
+
+    <ImageView
+        android:id="@+id/rabbitProduct"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="Rabbit Product"
+        app:layout_constraintBottom_toBottomOf="@+id/hamsterProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/hamsterProduct"
+        app:layout_constraintTop_toTopOf="@+id/hamsterProduct"
+        app:srcCompat="@drawable/dog_image_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
