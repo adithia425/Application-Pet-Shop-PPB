@@ -8,27 +8,39 @@
     android:id="@+id/activity_login"
     tools:context=".LoginActivity">
 
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_pawspal"
+        android:layout_marginTop="50sp"/>
+
     <TextView
         android:id="@+id/textTittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:text="LOGIN"
+        android:layout_marginTop="8dp"
+        android:text="Welcome Back!"
         android:textSize="34sp"
+        android:textColor="@color/purple"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/textUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="32dp"
         android:layout_marginLeft="32dp"
         android:padding="16dp"
         android:ems="10"
-        android:hint="username"
+        android:hint="Username"
         android:inputType="textPersonName" />
 
     <EditText
@@ -40,7 +52,7 @@
         android:layout_marginLeft="32dp"
         android:padding="16dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="textPassword"/>
 
     <Button
@@ -51,4 +63,24 @@
         android:layout_gravity="center"
         android:text="Login" />
 
+
+    <TextView
+        android:id="@+id/textSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="don't have an account? Sign up"
+        android:textSize="10sp"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copyright © 2024 PT Pawspal Indonesia"
+        android:textColor="@color/purple"
+        android:layout_gravity="center"
+        android:textSize="12sp"
+        android:layout_marginTop="100dp"
+        />
 </LinearLayout>
