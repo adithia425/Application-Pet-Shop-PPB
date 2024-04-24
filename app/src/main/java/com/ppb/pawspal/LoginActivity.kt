@@ -64,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
         Log.e("Username", username)
         Log.e("Password", password)
 
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+
 //            val client = AsyncHttpClient()
 //            val url = "http://128.199.194.80/auth/login"
 //
