@@ -1,5 +1,6 @@
 package com.ppb.pawspal
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -57,6 +58,11 @@ class LoginActivity : AppCompatActivity() {
 //            )
 
         }
+
+        loginBinding.textSignUp.setOnClickListener{
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun login(username: String, password: String) {
@@ -64,8 +70,21 @@ class LoginActivity : AppCompatActivity() {
         Log.e("Username", username)
         Log.e("Password", password)
 
-        val intent = Intent(this, MainMenuActivity::class.java)
-        startActivity(intent)
+        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+
+        val savedUsername = sharedPreferences.getString("username", "")
+        val savedPassword = sharedPreferences.getString("password", "")
+
+
+        Log.e("Login ", "Save Username : " + savedUsername + " AND Save Password : " + savedPassword)
+
+        if(username == savedUsername && password == savedPassword){
+            val intent = Intent(this, MainMenuActivity::class.java)
+            startActivity(intent)
+        }else{
+            loginBinding.textAlert.text = "Account Not Found"
+        }
+
 
 //            val client = AsyncHttpClient()
 //            val url = "http://128.199.194.80/auth/login"
@@ -111,5 +130,9 @@ class LoginActivity : AppCompatActivity() {
             val notes = deferredNotes.await()
 
         }
+    }
+
+    private fun signUp(){
+
     }
 }
