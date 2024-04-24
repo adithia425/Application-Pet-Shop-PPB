@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/activity_login"
-    tools:context=".LoginActivity">
+    android:id="@+id/activity_signup"
+    tools:context=".SignUpActivity">
 
 
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:text="Welcome Back!"
+        android:text="Create Account"
         android:textSize="34sp"
         android:textColor="@color/purple"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,42 +54,13 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"/>
-    <TextView
-        android:id="@+id/textAlert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text=""
-        android:textSize="10sp"
-        android:textColor="@color/red" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_gravity="center"
-        android:text="Login" />
+        android:text="Sign Up" />
 
-
-    <TextView
-        android:id="@+id/textSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="don't have an account? Sign up"
-        android:textSize="10sp"
-        android:textColor="@color/red" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Copyright © 2024 PT Pawspal Indonesia"
-        android:textColor="@color/purple"
-        android:layout_gravity="center"
-        android:textSize="12sp"
-        android:layout_marginTop="100dp"
-        />
 </LinearLayout>
