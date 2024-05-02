@@ -2,4 +2,26 @@
     <string name="app_name">PawsPal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="data_name">
+        <item>Nama Barang</item>
+        <item>Nama Barang</item>
+        <item>Nama Barang</item>
+        <item>Nama Barang</item>
+    </string-array>
+
+    <string-array name="data_description">
+        <item>Deskripsi Barang</item>
+        <item>Deskripsi Barang</item>
+        <item>Deskripsi Barang</item>
+        <item>Deskripsi Barang</item>
+    </string-array>
+
+    <string-array name="data_photo">
+        <item>https://upload.wikimedia.org/wikipedia/commons/8/87/Ahmad_Dahlan.jpg</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/8/87/Ahmad_Dahlan.jpg</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/8/87/Ahmad_Dahlan.jpg</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/8/87/Ahmad_Dahlan.jpg</item>
+    </string-array>
 </resources>
