@@ -2,6 +2,7 @@
     <string name="app_name">PawsPal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sym_rp">Rp. </string>
 
 
     <string-array name="data_name">

@@ -3,13 +3,12 @@ package com.ppb.pawspal
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ppb.pawspal.databinding.FragmentCartBinding
-import com.ppb.pawspal.databinding.FragmentHomeBinding
 import controller.ListItemAdapter
 import data.Item
 
@@ -33,6 +32,7 @@ class CartFragment : Fragment() {
 
     private val adapter = ListItemAdapter()
     private val list = ArrayList<Item>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +58,24 @@ class CartFragment : Fragment() {
 
         val myArrayList = arguments?.getSerializable("myArrayList") as? ArrayList<Item>
         if (myArrayList != null) {
-            // Lakukan sesuatu dengan myArrayList
-            setListItems(myArrayList)
-            Log.w("HomeFragment Created", "Size: " + list.count())
+
+            val getArrayListCart = arguments?.getSerializable("cartList") as? ArrayList<Pair<String, Int>>
+
+            val arrayListCart = arrayListOf<Item>()
+
+            for ((id, quantity) in getArrayListCart!!) {
+                val item = myArrayList.find { it.id == id }
+                if (item != null) {
+                    repeat(quantity) {
+                        arrayListCart.add(item)
+                    }
+                }
+            }
+
+            arrayListCart.forEach { println(it) }
+
+            setListItems(arrayListCart)
+            Log.w("HomeFragment Created", "Size: " + arrayListCart.count())
 
             setUpAction()
             showRecyclerList()

@@ -56,6 +56,7 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     implementation("com.loopj.android:android-async-http:1.4.9")
     implementation("com.google.android.material:material:1.0.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1")
 

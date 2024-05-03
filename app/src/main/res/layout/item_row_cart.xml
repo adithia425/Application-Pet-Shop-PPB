@@ -8,6 +8,7 @@
     android:padding="16dp"
     android:layout_marginBottom="12dp">
 
+
     <ImageView
         android:id="@+id/img_item_photo"
         android:layout_width="125dp"
@@ -28,19 +29,10 @@
             android:id="@+id/tv_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             android:textSize="26sp"
             android:textStyle="bold"
             tools:text="nama item" />
-
-        <TextView
-            android:id="@+id/tv_item_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:ellipsize="end"
-            android:layout_marginBottom="4dp"
-            tools:text="Rp. 100.000" />
 
         <TextView
             android:id="@+id/tv_item_description"
@@ -48,13 +40,12 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus augue vitae augue viverra tempus" />
+            tools:text="Desc" />
 
         <!--        <Button-->
-<!--            android:id="@+id/button2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Button" />-->
+        <!--            android:id="@+id/button2"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Button" />-->
     </LinearLayout>
-
 </RelativeLayout>

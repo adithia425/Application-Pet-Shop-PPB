@@ -8,15 +8,6 @@
     android:padding="16dp"
     tools:context=".DetailItemActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvName"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:text="Home"-->
-<!--        android:textSize="32dp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textColor="@color/purple"/>-->
-
     <!-- Judul Produk -->
     <TextView
         android:id="@+id/text_title"
@@ -80,5 +71,6 @@
         android:id="@+id/button_add_to_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Masukkan ke Keranjang" />
+        android:text="Add to Cart" />
+
 </LinearLayout>

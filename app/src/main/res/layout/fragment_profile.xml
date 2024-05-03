@@ -1,18 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="12dp"
     tools:context=".ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile"
-        android:gravity="center"
-        android:textSize="54dp"
-        android:textStyle="bold"
-        android:textColor="@color/purple"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="Profile"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="54dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/purple"/>-->
 
-</FrameLayout>
+    <!-- Gambar Profil -->
+    <ImageView
+        android:id="@+id/image_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/logo_pawspal" />
+
+    <!-- Nama Lengkap -->
+    <EditText
+        android:id="@+id/edittext_full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_profile"
+        android:layout_margin="16dp"
+        android:text="Ucup Jacob Wijaya"
+        android:hint="Nama Lengkap" />
+
+    <!-- Email -->
+    <EditText
+        android:id="@+id/edittext_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittext_full_name"
+        android:layout_margin="16dp"
+        android:text="ucupjacobwijaya123@yahoo.com"
+        android:hint="Email" />
+
+    <!-- Nomor Telepon -->
+    <EditText
+        android:id="@+id/edittext_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittext_email"
+        android:layout_margin="16dp"
+        android:hint="Nomor Telepon"
+        android:text="0891223334444"/>
+
+    <!-- Alamat -->
+    <EditText
+        android:id="@+id/edittext_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittext_phone"
+        android:layout_margin="16dp"
+        android:text="Apartement Bali Utama No. 1"
+        android:hint="Alamat" />
+
+    <Spinner
+        android:id="@+id/spinner_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittext_address"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Tombol Logout -->
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Logout"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_image"
+        android:layout_margin="16dp"/>
+
+</RelativeLayout>
