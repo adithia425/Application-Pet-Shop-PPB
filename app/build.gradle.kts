@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -53,12 +54,13 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.github.bumptech.glide:glide:4.11.0")
-
+    implementation("com.loopj.android:android-async-http:1.4.9")
     implementation("com.google.android.material:material:1.0.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1")
+    implementation("com.google.firebase:firebase-firestore:24.11.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

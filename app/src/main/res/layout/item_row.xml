@@ -38,8 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="4"
+            android:maxLines="2"
             tools:text="deskripsi asdasdsad asdasd asdasd sadasd asdasd sada asda asdasd asdasd asdasd asdasas asdasdsad asdasd adasdas" />
+
+<!--        <Button-->
+<!--            android:id="@+id/button2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Button" />-->
     </LinearLayout>
 
 </RelativeLayout>
