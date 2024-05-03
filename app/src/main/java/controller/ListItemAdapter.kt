@@ -3,15 +3,11 @@ package controller
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
-import com.ppb.pawspal.databinding.ItemRowBinding
-
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.ppb.pawspal.R
+import com.ppb.pawspal.databinding.ItemRowBinding
 import data.Item
 
 class ListItemAdapter : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {
@@ -50,6 +46,7 @@ class ListItemAdapter : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {
                     .into(imgItemPhoto)
 
                 tvItemName.text = item.name
+                tvItemPrice.text = "Rp. " + item.price
                 tvItemDescription.text = item.description
             }
         }

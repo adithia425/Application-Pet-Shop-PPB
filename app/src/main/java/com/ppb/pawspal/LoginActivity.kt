@@ -4,18 +4,14 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.ppb.pawspal.databinding.ActivityLoginBinding
-import com.ppb.pawspal.databinding.ActivityMainBinding
-import controller.ListItemAdapter
 import data.Item
 import db.UserHelper
 import kotlinx.coroutines.Dispatchers
@@ -45,9 +41,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("main_shared_preferences", Context.MODE_PRIVATE)
 
-        val savedUsername = sharedPreferences.getString("id", "")
+        val idLoged = sharedPreferences.getString("id", "")
 
         val listItem = ArrayList<Item>()
         db.collection("products")
@@ -74,14 +70,14 @@ class LoginActivity : AppCompatActivity() {
             }
 
 
-        if(!savedUsername.isNullOrEmpty()){
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(this, MainMenuActivity::class.java)
-                intent.putExtra("myArrayList", list)
-                startActivity(intent)
-            }, 3000)
-
-        }
+//        if(!idLoged.isNullOrEmpty()){
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                val intent = Intent(this, MainMenuActivity::class.java)
+//                intent.putExtra("myArrayList", list)
+//                startActivity(intent)
+//            }, 3000)
+//
+//        }
 
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
 
@@ -126,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d(TAG, "${document.id} => ${document.data}")
                     if(username == document.get("username") && password == document.get("password")){
 
-                        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+                        val sharedPreferences = getSharedPreferences("main_shared_preferences", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putString("id", document.id)
                         editor.apply()

@@ -2,15 +2,16 @@ package com.ppb.pawspal
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.ppb.pawspal.databinding.ActivityDetailItemBinding
 import data.Item
 import java.text.SimpleDateFormat
@@ -27,7 +28,7 @@ class DetailItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("main_shared_preferences", Context.MODE_PRIVATE)
 
         savedID = sharedPreferences.getString("id", "").toString()
 
@@ -51,10 +52,65 @@ class DetailItemActivity : AppCompatActivity() {
 
 
         binding.buttonAddToCart.setOnClickListener {
-            order()
+            addCart()
         }
     }
 
+    fun addCart(){
+
+        val idToAdd: String = data.id
+        val quantityToAdd = 1
+
+//        val arrayListCartTemp = arrayListOf(
+//            Pair("7x7g69GGVqAHgTLRhTEr", 2)
+//        )
+
+        val gson = Gson()
+        val sharedPreferences = getSharedPreferences(savedID, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+
+//        editor.putString("arrayListCart", "arrayListCartTemp")
+//        editor.apply()
+
+        val getArrayListCart = sharedPreferences.getString("arrayListCart", null)
+        Log.w("addCart", getArrayListCart.toString())
+
+        var arrayListCart: ArrayList<Pair<String, Int>>
+
+        if(getArrayListCart.isNullOrEmpty()){
+            //Buat List Kosong
+            val arrayListCartTemp = arrayListOf<Pair<String, Int>>()
+            val json = gson.toJson(arrayListCartTemp)
+            editor.putString("arrayListCart", json)
+            editor.apply()
+            arrayListCart = arrayListCartTemp
+        }else{
+            arrayListCart = if (getArrayListCart != null) {
+                val type = object : TypeToken<ArrayList<Pair<String, Int>>>() {}.type
+                Gson().fromJson<ArrayList<Pair<String, Int>>>(getArrayListCart, type)
+            } else {
+                arrayListOf<Pair<String, Int>>()
+            }
+        }
+        //Add to list
+        val existingPair = arrayListCart.find { it.first == idToAdd }
+
+        if (existingPair != null) {
+            val index = arrayListCart.indexOf(existingPair)
+            val newQuantity = existingPair.second + quantityToAdd
+            arrayListCart[index] = Pair(idToAdd, newQuantity)
+        } else {
+            arrayListCart.add(Pair(idToAdd, quantityToAdd))
+        }
+
+        val arrayListBJsonNew = Gson().toJson(arrayListCart)
+
+        //val editor = sharedPreferences.edit()
+        editor.putString("arrayListCart", arrayListBJsonNew)
+        editor.apply()
+
+    }
 
     fun order(){
 

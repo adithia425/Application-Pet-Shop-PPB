@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PawsPal"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentConfirmActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailItemActivity"
             android:exported="false" />
         <activity
