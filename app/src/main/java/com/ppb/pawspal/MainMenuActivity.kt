@@ -3,14 +3,17 @@ package com.ppb.pawspal
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ppb.pawspal.databinding.ActivityLoginBinding
 import com.ppb.pawspal.databinding.ActivityMainMenuBinding
+import data.Item
 
 class MainMenuActivity : AppCompatActivity() {
 
 
+    val list = ArrayList<Item>()
     private lateinit var mainMenuBinding: ActivityMainMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,21 @@ class MainMenuActivity : AppCompatActivity() {
 
         setContentView(mainMenuBinding.root)
 
+        val myArrayList = intent.getSerializableExtra("myArrayList") as ArrayList<Item>?
+        if (myArrayList != null) {
+            Log.w("MainMenu Created", "Name : " + myArrayList.count())
+
+            list.addAll(myArrayList)
+        }
+
         val fragment = HomeFragment.newInstance("test1", "test2")
+
+        val bundle = Bundle()
+        bundle.putSerializable("myArrayList", myArrayList)
+        fragment.arguments = bundle
+
+
+
         mainMenuBinding.bottomNavigationView.setOnNavigationItemSelectedListener(menuItemSelected)
         addFragment(fragment)
     }
@@ -28,11 +45,21 @@ class MainMenuActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.item_home -> {
                 val fragment = HomeFragment.newInstance("test1", "test2")
+
+                val bundle = Bundle()
+                bundle.putSerializable("myArrayList", list)
+                fragment.arguments = bundle
+
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.item_cart -> {
                 val fragment = CartFragment.newInstance("test1", "test2")
+
+                val bundle = Bundle()
+                bundle.putSerializable("myArrayList", list)
+                fragment.arguments = bundle
+
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }

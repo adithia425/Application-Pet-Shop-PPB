@@ -1,14 +1,22 @@
 package com.ppb.pawspal
 
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import com.ppb.pawspal.databinding.ActivityLoginBinding
 import com.ppb.pawspal.databinding.ActivityMainBinding
+import controller.ListItemAdapter
+import data.Item
 import db.UserHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -23,7 +31,10 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
+    val db = Firebase.firestore
+    private val home = HomeFragment()
 
+    val list = ArrayList<Item>()
     private lateinit var loginBinding: ActivityLoginBinding
 
     private lateinit var edtUsername: EditText
@@ -34,7 +45,43 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
 
+        val savedUsername = sharedPreferences.getString("id", "")
+
+        val listItem = ArrayList<Item>()
+        db.collection("products")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
+
+                    val item = Item(
+                        document.id,
+                        document.get("name").toString(),
+                        document.get("description").toString(),
+                        document.getLong("price")?.toInt() ?: 0,
+                        document.get("photo").toString()
+                    )
+                    listItem.add(item)
+                    Log.w("ListItem", "Size: " + listItem.count())
+                }
+                list.addAll(listItem)
+                Log.w("List Final", "Size: " + listItem.count())
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting documents.", exception)
+            }
+
+
+        if(!savedUsername.isNullOrEmpty()){
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, MainMenuActivity::class.java)
+                intent.putExtra("myArrayList", list)
+                startActivity(intent)
+            }, 3000)
+
+        }
 
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
 
@@ -53,9 +100,6 @@ class LoginActivity : AppCompatActivity() {
             var password = textPassword.toString();
 
             login(username, password)
-//            Intent(this@LoginActivity,
-//                ShopActivity::class.java)
-//            )
 
         }
 
@@ -70,20 +114,39 @@ class LoginActivity : AppCompatActivity() {
         Log.e("Username", username)
         Log.e("Password", password)
 
-        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+//        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+//
+//        val savedUsername = sharedPreferences.getString("username", "")
+//        val savedPassword = sharedPreferences.getString("password", "")
 
-        val savedUsername = sharedPreferences.getString("username", "")
-        val savedPassword = sharedPreferences.getString("password", "")
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                    if(username == document.get("username") && password == document.get("password")){
+
+                        val sharedPreferences = getSharedPreferences("my_shared_preferences", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("id", document.id)
+                        editor.apply()
 
 
-        Log.e("Login ", "Save Username : " + savedUsername + " AND Save Password : " + savedPassword)
 
-        if(username == savedUsername && password == savedPassword){
-            val intent = Intent(this, MainMenuActivity::class.java)
-            startActivity(intent)
-        }else{
+                        Log.w("Login", "Size " + list.count())
+
+                        val intent = Intent(this, MainMenuActivity::class.java)
+                        intent.putExtra("myArrayList", list)
+                        startActivity(intent)
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+
             loginBinding.textAlert.text = "Account Not Found"
-        }
+
 
 
 //            val client = AsyncHttpClient()
@@ -130,9 +193,5 @@ class LoginActivity : AppCompatActivity() {
             val notes = deferredNotes.await()
 
         }
-    }
-
-    private fun signUp(){
-
     }
 }

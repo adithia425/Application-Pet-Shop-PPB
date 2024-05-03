@@ -1,5 +1,7 @@
 package controller
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +14,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.ppb.pawspal.R
 import data.Item
 
-class ListItemAdapter(private val listItem: ArrayList<Item>) : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {
+class ListItemAdapter : RecyclerView.Adapter<ListItemAdapter.ListViewHolder>() {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
+    private var listItem: List<Item> = emptyList()
 
     interface OnItemClickCallBack{
         fun onItemClick(data: Item)
@@ -34,6 +37,7 @@ class ListItemAdapter(private val listItem: ArrayList<Item>) : RecyclerView.Adap
     }
 
     fun setOnItemClickCallback(callback: OnItemClickCallBack){
+        Log.e("Init", "OnItemClick")
         onItemClickCallBack = callback
     }
 
@@ -49,5 +53,11 @@ class ListItemAdapter(private val listItem: ArrayList<Item>) : RecyclerView.Adap
                 tvItemDescription.text = item.description
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setItemData(data: List<Item>){
+        listItem = data
+        notifyDataSetChanged()
     }
 }
