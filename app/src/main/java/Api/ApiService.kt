@@ -31,9 +31,4 @@ interface ApiService {
     @DELETE("/cart/{id}")
     fun removeFromCart(@Path("id") id: Int): Call<Void>
 
-    @POST("/payment")
-    fun makePayment(@Body paymentRequest: PaymentRequest): Call<PaymentResponse>
-
-    @GET("/profile")
-    fun getProfile(): Call<ContactsContract.Profile>
 }
